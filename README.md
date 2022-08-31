@@ -1,0 +1,2 @@
+# MyLog
+Simple day logger
