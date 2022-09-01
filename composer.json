@@ -1,0 +1,16 @@
+{
+    "name": "mac46/my-log",
+    "description": "Simple task logger",
+    "authors": [
+        {
+            "name": "Marco Preciado",
+            "email": "mac46005@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MyLog_ClassLib\\" : "src"
+        }
+    }
+}
