@@ -1,0 +1,25 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+:root{
+    --color-primary: #0000;
+    --color-secondary: #0000;
+    --color-danger: red;
+    --color-warning: orange;
+    --color-success: green;
+    --color-bg1: #000;
+    --color-bg2: #111;
+    --color-bg3: #0000;
+    --color-body-background: #0000;
+
+    --cont-sz-lg: 85%;
+    --cont-sz-md: 90%;
+    --cont-sz-sm: 93%;
+}
+
+

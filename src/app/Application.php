@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace MyLog_ClassLib\App;
 
+use MyLog_ClassLib\App\Container;
+
 class Application{
     public static Router $router;
     public static Container $container;

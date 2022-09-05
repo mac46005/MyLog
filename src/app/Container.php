@@ -36,52 +36,49 @@ class Container implements ContainerInterface{
 
     public function resolve(string $id){
         //REFLECTION API
-
-        //1. Inspect the class that we are trying to get from the container
+        
+        // 1. Inspect the class that we are trying to get from the container
         $reflectionClass = new \ReflectionClass($id);
         if(! $reflectionClass->isInstantiable()){
-            //TODO: Create exception class using psr exception abtract class
-            //throw new ContainerExeption('Class '. $id . ' is not instantiable');
+            throw new ContainerException('Class '. $id . ' is not instantiable');
         }
 
-        //2. Inspect the constructor of the class
+        // 2. Inspect the contructor of the class
         $constructor = $reflectionClass->getConstructor();
         if(! $constructor){
-            //! Returns the class if no constructor is found
             return $reflectionClass->newInstance();
         }
 
-        //3. Inspect the constructor parameters (dependencies)
+
+        // 3. Inspect the cotructore parameters (dependencies)
         $parameters = $constructor->getParameters();
+
         if(! $parameters){
             return new $id;
         }
 
-        //4. If the constructor parameter is a class then try to resolve that class using the container
+        // 4. If the constructor parameter is a class then try to resolve that class using the container
         $dependencies = array_map(
             function(\ReflectionParameter $param) use ($id){
                 $name = $param->getName();
                 $type = $param->getType();
 
                 if(! $type){
-                    //throw new ContainerException('Failed to resolve class"' . $id . '" because param "' . $name . '" is missing a type hint');
+                    throw new ContainerException('Failed to resolve class "' . $id . '" because param "' . $name . '" is missing a type hint');
                 }
 
                 if($type instanceof \ReflectionUnionType){
-                    //throw new ContainerException('Failed to resolve class "'. $id . '" because of union type for param "' . $name . '" is missing a type hint');
-
-
+                    throw new ContainerException('Failed to resolve class "' . $id . '" because of union type for param "' . $name . '" is missing a type hint');
                 }
 
-                if($type instanceof \ReflectionNamedType && $type->isBuiltin()){
+                if($type instanceof \ReflectionNamedType && ! $type->isBuiltin()){
                     return $this->get($type->getName());
                 }
 
-                //throw new ContainerException('Failed to resolve class "' . $id . '" because invalid param "' . $name . '"');
+                throw new ContainerException('Failed to resolve class "' . $id . '" because invalid param "' . $name . '"');
             },
             $parameters
         );
-
         return $reflectionClass->newInstanceArgs($dependencies);
     }
 }
