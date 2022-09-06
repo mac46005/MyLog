@@ -17,7 +17,7 @@
         <main>
             <div class="main-container">
                 <!-- TODO: Create a readonly text block -->
-                <!-- ? TABLES? -->
+                <!-- GET -->
                 <table>
                     <thead>
                         <tr>
@@ -45,6 +45,7 @@
         <section>
             <div class="inputsection-container">
                 <!-- TODO: Text box for user to input data -->
+                <!-- POST -->
             </div>
         </section>
         <footer>
