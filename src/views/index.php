@@ -10,18 +10,41 @@
     <div class="body-container">
         <header>
             <div class="header-container">
-                HEADER
+                <!-- TODO: links to other pages -->
             </div>
         </header>
 
         <main>
             <div class="main-container">
-                MAIN
+                <!-- TODO: Create a readonly text block -->
+                <!-- ? TABLES? -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>data1</th>
+                            <th>data2</th>
+                            <th>data3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>data 1</td>
+                            <td>data 1</td>
+                            <td>data 1</td>
+                        </tr>
+                        <tr>
+                            <td>data 1</td>
+                            <td>data 2</td>
+                            <td>data 3</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </main>
         <section>
             <div class="inputsection-container">
-                INPUT
+                <!-- TODO: Text box for user to input data -->
             </div>
         </section>
         <footer>
