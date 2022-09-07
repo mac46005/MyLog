@@ -11,13 +11,22 @@
         <header>
             <div class="header-container">
                 <!-- TODO: links to other pages -->
+                <h4><a href="#">HOME</a></h4>
+                <ul class="nav-menu">
+                    <li>TIME?</li>
+                    <li><a href="#">Category Manager</a></li>
+                </ul>
             </div>
         </header>
 
         <main>
             <div class="main-container">
-                <!-- TODO: Create a readonly text block -->
-                <!-- GET -->
+                <!-- 
+                    TODO: Create a readonly text block
+                    TODO: Use php to get data from db
+                    TODO: Lets use sqlite for this proj
+                -->
+                <!-- *GET -->
                 <table>
                     <thead>
                         <tr>
@@ -46,6 +55,19 @@
             <div class="inputsection-container">
                 <!-- TODO: Text box for user to input data -->
                 <!-- POST -->
+                <form action="">
+                    <!-- 
+                        TODO: Make it to where the user can enter a category
+                        TODO: AutoComplete
+                        TODO: If category not found add new category
+                        TODO: when added use logic to mkshort
+                    -->
+                    <label for="category">Category:</label>
+                    <input type="text" name="category" id="category">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" id="description">
+                    <button type="submit">Add</button>
+                </form>
             </div>
         </section>
         <footer>
