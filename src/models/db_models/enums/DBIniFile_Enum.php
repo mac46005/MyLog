@@ -19,5 +19,5 @@ class DBIniFile_Enum{
         4 => DBIniFile_Enum::SCHEMA,
         5 => DBIniFile_Enum::PASSWORD,
         6 => DBIniFile_Enum::CONNECTION_PATH
-    ]
+    ];
 }
