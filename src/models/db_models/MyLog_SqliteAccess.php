@@ -18,7 +18,7 @@ class MyLog_SqliteAccess extends PDO_SqliteAccess{
 
     public function readone($id){
         try {
-            //code...
+            $pdoStatement = $this->db->query();
         } catch (\Throwable $th) {
             //throw $th;
         }

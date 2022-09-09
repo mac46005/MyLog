@@ -15,9 +15,21 @@ class MyLog_SqlStatements
         AND name = "$tableName"
         SQL;
     }
-    //* Im sure there is a better way to save sql statements somewhere but...
 
-    ## Table Creation #####
+
+    public static function select_WHERE_Id(string $tableName, array $colNames, string $idName, mixed $id){
+        $str_colNames = implode(',', $colNames);
+
+        $sql = <<<SQL
+        SELECT $str_colNames
+        FROM $tableName
+        WHERE $idName = $id
+        SQL;
+    }
+
+
+    //* Table Creation #########################################
+
     public const CREATE_TABLE_Categorys = <<<SQL
     CREATE TABLE categorys (
         id INTEGER,
@@ -36,6 +48,6 @@ class MyLog_SqlStatements
         PRIMARY KEY(id AUTOINCREMENT)
     )
     SQL;
-
-    ########################
+    
+    //!########################################################
 }
