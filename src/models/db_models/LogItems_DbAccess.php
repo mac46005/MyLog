@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace MyLog_ClassLib\Models\DB_Models;
 
-use MyLog_ClassLib\Models\DB_Models\Container;
+use MyLog_ClassLib\App\Container;
+use MyLog_ClassLib\Models\LogItem;
 
-
-class MyLog_SqliteAccess extends PDO_SqliteAccess{
+class LogItems_DbAccess extends PDO_SqliteAccess{
     public function __construct(
         private Container $container, string $configFilePath
     )
@@ -18,18 +18,21 @@ class MyLog_SqliteAccess extends PDO_SqliteAccess{
 
     public function readone($id){
         try {
-            $pdoStatement = $this->db->query();
-        } catch (\Throwable $th) {
-            //throw $th;
+            $pdoStatement = $this->db->query(MyLog_SqlStatements::select_WHERE_Id('',[],'id',$id));
+            $logItem = $pdoStatement->fetchAll(\PDO::FETCH_CLASS,LogItem::class)[0];
+            return $logItem;
+        } catch (\PDOException $th) {
+            throw $th;
         }
     }
 
     public function readAll(): mixed
     {
         try {
-            //code...
-        } catch (\Throwable $th) {
-            //throw $th;
+            $pdoStmt = $this->db->query();
+            $list = $pdoStmt->fetchAll();
+        } catch (\PDOException $th) {
+            throw $th;
         }
         return false;
     }
@@ -38,8 +41,8 @@ class MyLog_SqliteAccess extends PDO_SqliteAccess{
     {
         try {
             //code...
-        } catch (\Throwable $th) {
-            //throw $th;
+        } catch (\PDOException $th) {
+            throw $th;
         }
         return false;
     }
@@ -48,8 +51,8 @@ class MyLog_SqliteAccess extends PDO_SqliteAccess{
     {
         try {
             //code...
-        } catch (\Throwable $th) {
-            //throw $th;
+        } catch (\PDOException $th) {
+            throw $th;
         }
         return false;
     }
@@ -58,8 +61,8 @@ class MyLog_SqliteAccess extends PDO_SqliteAccess{
     {
         try {
             //code...
-        } catch (\Throwable $th) {
-            //throw $th;
+        } catch (\PDOException $th) {
+            throw $th;
         }
         return false;
     }
@@ -68,8 +71,8 @@ class MyLog_SqliteAccess extends PDO_SqliteAccess{
     {
         try {
             //code...
-        } catch (\Throwable $th) {
-            //throw $th;
+        } catch (\PDOException $th) {
+            throw $th;
         }
         return false;
     }
