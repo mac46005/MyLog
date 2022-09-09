@@ -30,6 +30,9 @@ class MyLog_SqlStatements
     public const CREATE_TABLE_LogItems = <<<SQL
     CREATE TABLE logItems (
         id INTEGER,
+        description,
+        timestamp TEXT,
+        category_id INTEGER,
         PRIMARY KEY(id AUTOINCREMENT)
     )
     SQL;
