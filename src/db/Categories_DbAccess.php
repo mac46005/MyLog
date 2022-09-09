@@ -7,7 +7,7 @@ namespace MyLog_ClassLib\DB;
 use MyLog_ClassLib\App\Container;
 use MyLog_ClassLib\Models\LogItem;
 
-class Categorys_DbAccess extends PDO_SqliteAccess{
+class Categories_DbAccess extends PDO_SqliteAccess{
     public function __construct(
         private Container $container, string $configFilePath
     )
