@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace MyLog_ClassLib\Models\DB_Models\Enums;
+namespace MyLog_ClassLib\DB\Interfaces;
 
 class DBIniFile_Enum{
     public const DRIVER = 'driver';

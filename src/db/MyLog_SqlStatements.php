@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MyLog_ClassLib\Models\DB_Models;
+namespace MyLog_ClassLib\DB;
 
 class MyLog_SqlStatements
 {

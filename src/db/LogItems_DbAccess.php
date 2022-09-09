@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace MyLog_ClassLib\Models\DB_Models;
+namespace MyLog_ClassLib\DB;
 
 use MyLog_ClassLib\App\Container;
 use MyLog_ClassLib\Models\LogItem;
