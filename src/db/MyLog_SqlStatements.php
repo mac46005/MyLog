@@ -50,4 +50,17 @@ class MyLog_SqlStatements
     SQL;
     
     //!########################################################
+
+    //* LogItem Statements
+
+    public const LogItem_ReadAll = <<<SQL
+
+    SQL;
+    //* Categories Statements
+    public const Categories_SELECT_ALL = <<<SQL
+    SELECT id, name
+    FROM categories
+    SQL;
+
+    //* Subcategories Statements
 }

@@ -3,8 +3,10 @@
 declare(strict_types = 1);
 
 namespace MyLog_ClassLib\DB;
-
 use MyLog_ClassLib\App\Container;
+use MyLog_ClassLib\DB\MyLog_SqlStatements as DBMyLog_SqlStatements;
+use MyLog_ClassLib\Models\CategoryItem;
+use MyLog_ClassLib\Models\DB_Models\MyLog_SqlStatements;
 use MyLog_ClassLib\Models\LogItem;
 
 class Categories_DbAccess extends PDO_SqliteAccess{
@@ -18,8 +20,8 @@ class Categories_DbAccess extends PDO_SqliteAccess{
 
     public function readone($id){
         try {
-            $pdoStatement = $this->db->query(MyLog_SqlStatements::select_WHERE_Id('',[],'id',$id));
-            $logItem = $pdoStatement->fetchAll(\PDO::FETCH_CLASS,LogItem::class)[0];
+            $pdoStatement = $this->db->query(MyLog_SqlStatements::select_WHERE_Id('categories',['id','name'],'id',$id));
+            $logItem = $pdoStatement->fetchAll(\PDO::FETCH_CLASS,Category::class)[0];
             return $logItem;
         } catch (\PDOException $th) {
             throw $th;
@@ -29,8 +31,8 @@ class Categories_DbAccess extends PDO_SqliteAccess{
     public function readAll(): mixed
     {
         try {
-            $pdoStmt = $this->db->query();
-            $list = $pdoStmt->fetchAll();
+            $pdoStmt = $this->db->query(DBMyLog_SqlStatements::Categories_SELECT_ALL);
+            return $list = $pdoStmt->fetchAll();
         } catch (\PDOException $th) {
             throw $th;
         }
@@ -39,8 +41,11 @@ class Categories_DbAccess extends PDO_SqliteAccess{
 
     public function write($obj): bool
     {
+
         try {
-            //code...
+            $sqlStmt = <<<SQL
+            
+            SQL;
         } catch (\PDOException $th) {
             throw $th;
         }
