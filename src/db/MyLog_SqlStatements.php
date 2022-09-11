@@ -17,17 +17,34 @@ class MyLog_SqlStatements
     }
 
 
-    public static function select_WHERE_Id(string $tableName, array $colNames, string $idName, mixed $id){
+    public static function select_WHERE_Id(string $tableName, array $colNames, string $idName, mixed $id):string{
         $str_colNames = implode(',', $colNames);
 
-        $sql = <<<SQL
+        return <<<SQL
         SELECT $str_colNames
         FROM $tableName
         WHERE $idName = $id
         SQL;
     }
 
+    public static function insert_Statement(string $table, array $col, array $colValues):string{
+        $formattedArray = [];
+        foreach ($colValues as $key => $value) {
+            $formattedArray[] = "'$value'";
+        }
 
+        return <<<SQL
+        INSERT INTO $table (${implode(',',$col)})
+        VALUES(${implode(',',$formattedArray)})
+        SQL;
+    }
+
+    public static function delete_Statement(string $table, string $idName, string $idVal):string{
+        return <<<SQL
+        DELETE FROM $table
+        WHERE $idName = '$idVal'
+        SQL;
+    }
     //* Table Creation #########################################
 
     public const CREATE_TABLE_Categorys = <<<SQL
@@ -56,11 +73,13 @@ class MyLog_SqlStatements
     public const LogItem_ReadAll = <<<SQL
 
     SQL;
+
+
+
     //* Categories Statements
     public const Categories_SELECT_ALL = <<<SQL
     SELECT id, name
     FROM categories
     SQL;
-
     //* Subcategories Statements
 }
