@@ -47,7 +47,7 @@ class MyLog_SqlStatements
     }
     //* Table Creation #########################################
 
-    public const CREATE_TABLE_Categorys = <<<SQL
+    public const CREATE_TABLE_Categories = <<<SQL
     CREATE TABLE categorys (
         id INTEGER,
         name TEXT,

@@ -16,10 +16,10 @@ class Categories_DbAccess extends PDO_SqliteAccess{
     )
     {
         parent::__construct($configFilePath);
-        
+        $this->initialSetup();
     }
 
-    public function readone($id){
+    public function readOne($id):mixed{
         try {
             $pdoStatement = $this->db->query(MyLog_SqlStatements::select_WHERE_Id($this->tableName,['id','name'],'id',$id));
             $logItem = $pdoStatement->fetchAll(\PDO::FETCH_CLASS,Category::class)[0];
@@ -97,12 +97,12 @@ class Categories_DbAccess extends PDO_SqliteAccess{
 
     public function initialSetup(){
         $this->connect();
-        $pdoStatement = $this->db->query(MyLog_SqlStatements::CREATE_TABLE_Categorys);
+        $pdoStatement = $this->db->query(MyLog_SqlStatements::selectTableNameCount_SQLStatement($this->tableName));
 
         $result = $pdoStatement->fetchAll()[0]['nameCount'];
 
         if($result == 0){
-            //$this->db->exec(MyLog_SqlStatements::);
+            $this->db->exec(MyLog_SqlStatements::CREATE_TABLE_Categories);
         }
     }
 }

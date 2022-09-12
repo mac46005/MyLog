@@ -4,10 +4,10 @@ use MyLog_ClassLib\App\Application;
 use MyLog_ClassLib\Controllers\CategoriesController;
 use MyLog_ClassLib\Controllers\HomeController;
 use MyLog_ClassLib\DB\Categories_DbAccess;
-use MyLog_ClassLib\DB\Categorys_DbAccess;
-use MyLog_ClassLib\DB\Interfaces\IDBAccess;
 use MyLog_ClassLib\DB\LogItems_DbAccess;
-use MyLog_ClassLib\Models\DB_Models\Interfaces\IDBAccess as InterfacesIDBAccess;
+use MyLog_ClassLib\DB\SubCategories_DbAccess;
+use MyLog_ClassLib\DB\Interfaces\IDBAccess;
+use MyLog_ClassLib\Models\DB_Models\Categorys_DbAccess;
 
 require '../vendor/autoload.php';
 
@@ -28,16 +28,22 @@ $MyApplication::$router
 
 $MyApplication::$container
     
-    ->set(IDBAccess::class, function(Container $c){
+    ->set(Categorys_DbAccess::class, function(Container $c){
         return new LogItems_DbAccess(
             $c->get(Container::class),
-            CONFIG_PATH . 'dbConn.ini'
+            CONFIG_PATH . '/dbConn.ini'
         );
     })
     ->set(IDBAccess::class, function(Container $c){
         return new Categories_DbAccess(
             $c->get(Container::class),
-        CONFIG_PATH . 'dbConn.ini'
+        CONFIG_PATH . '/dbConn.ini'
+        );
+    })
+    ->set(IDBAccess::class, function(Container $c){
+        return new SubCategories_DbAccess(
+            $c->get(Container::class),
+            CONFIG_PATH . 'dbConn.ini'
         );
     })
     ->set(HomeController::class, HomeController::class)

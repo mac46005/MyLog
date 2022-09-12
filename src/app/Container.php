@@ -6,7 +6,7 @@ declare(strict_types = 1);
 namespace MyLog_ClassLib\App;
 
 use Psr\Container\ContainerInterface;
-
+use MyLog_ClassLib\App\Exceptions\ContainerException;
 class Container implements ContainerInterface{
     private array $entries = [];
 

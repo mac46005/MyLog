@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace MyLog_ClassLib\DB;
 
 use MyLog_ClassLib\Models\DB_Models\Enums\DBIniFile_Enum;
-use MyLog_ClassLib\Models\DB_Models\Interfaces\IDBAccess;
+use MyLog_ClassLib\DB\Interfaces\IDBAccess;
 
 abstract class PDO_SqliteAccess implements IDBAccess{
     protected ?\PDO $db = NULL;

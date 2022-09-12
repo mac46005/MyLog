@@ -29,8 +29,8 @@ class LogItems_DbAccess extends PDO_SqliteAccess{
     public function readAll(): mixed
     {
         try {
-            $pdoStmt = $this->db->query();
-            $list = $pdoStmt->fetchAll();
+            //$pdoStmt = $this->db->query();
+            //$list = $pdoStmt->fetchAll();
         } catch (\PDOException $th) {
             throw $th;
         }
@@ -83,12 +83,12 @@ class LogItems_DbAccess extends PDO_SqliteAccess{
 
     public function initialSetup(){
         $this->connect();
-        $pdoStatement = $this->db->query(MyLog_SqlStatements::CREATE_TABLE_Categorys);
+        //$pdoStatement = $this->db->query(MyLog_SqlStatements::CREATE_TABLE_Categorys);
 
-        $result = $pdoStatement->fetchAll()[0]['nameCount'];
+        //$result = $pdoStatement->fetchAll()[0]['nameCount'];
 
-        if($result == 0){
-            //$this->db->exec(MyLog_SqlStatements::);
-        }
+        // if($result == 0){
+        //     //$this->db->exec(MyLog_SqlStatements::);
+        // }
     }
 }
