@@ -22,7 +22,7 @@ $crud_op = $_GET['crud_op'];
             <div class="main-container">
                 <form action="/categories/submit-form" method="post">
                     <input type="text" name="crud_op" id="crud_op" value="<?= $crud_op ?>">
-                    <input type="text" name="id" id="id">
+                    <input type="number" name="id" id="id">
                     <label for="name">Name:</label>
                     <input type="text" name="name" id="name">
                     <label for="color">Color:</label>

@@ -44,7 +44,7 @@ class Categories_DbAccess extends PDO_SqliteAccess{
     {
 
         try {
-            $sqlStmt = MyLog_SqlStatements::insert_Statement($this->tableName,['name'],[$obj->name]);
+            $sqlStmt = MyLog_SqlStatements::insert_Statement($this->tableName,['name','color'],[$obj->name,$obj->color]);
             if($this->db->exec($sqlStmt)){
                 return true;
             }

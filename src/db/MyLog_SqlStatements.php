@@ -32,11 +32,19 @@ class MyLog_SqlStatements
         foreach ($colValues as $key => $value) {
             $formattedArray[] = "'$value'";
         }
+        $groupedCol = implode(",",$col);
+        $groupedVal = implode(",",$formattedArray);
 
-        return <<<SQL
-        INSERT INTO $table (${implode(',',$col)})
-        VALUES(${implode(',',$formattedArray)})
+        echo $groupedCol;
+        echo $groupedVal;
+
+        
+        $stmt = <<<SQL
+        INSERT INTO $table ($groupedCol)
+        VALUES($groupedVal)
         SQL;
+        echo $stmt;
+        return $stmt;
     }
 
     public static function delete_Statement(string $table, string $idName, string $idVal):string{
