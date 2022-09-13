@@ -20,4 +20,8 @@ class SubCategoriesController{
     public function index(){
         return View::create_View('subcategories/index');
     }
+
+    public function form(){
+        return View::create_View('subcategories/subcategoryForm');
+    }
 }

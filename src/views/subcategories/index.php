@@ -10,6 +10,9 @@
 <body>
     <div class="body-container">
         <?php
+
+use MyLog_ClassLib\DB\Enums\CRUD_Enum;
+
         include_once VIEW_PATH . '/components/_nav.php';
         ?>
     </div>
@@ -31,6 +34,9 @@
                 TODO: Lets use sqlite for this proj
             -->
             <!-- *GET -->
+            <div class="mini-header">
+                <a href="/subcategories/form?crud_op=<?= CRUD_Enum::WRITE ?>">Add New SubCategory</a>
+            </div>
             <table>
                 <thead>
                     <tr>
