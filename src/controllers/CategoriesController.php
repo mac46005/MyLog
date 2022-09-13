@@ -7,6 +7,7 @@ use MyLog_ClassLib\App\Container;
 use MyLog_ClassLib\App\View;
 use MyLog_ClassLib\DB\Categories_DbAccess;
 use MyLog_ClassLib\DB\Enums\CRUD_Enum;
+use MyLog_ClassLib\Models\Category;
 
 class CategoriesController{
     public function __construct(
@@ -26,10 +27,13 @@ class CategoriesController{
     }
 
     public function postForm(){
-        $crud_op = $_GET['crud_op'];
+        $crud_op = $_REQUEST['crud_op'];
+        $categoryItem = new Category();
         if($crud_op == CRUD_Enum::WRITE){
-            
+            $this->categories_DbAccess->write($categoryItem);
+            header("location:/categories/index");
         }else{
+            $this->categories_DbAccess->update($categoryItem);
 
         }
     }
