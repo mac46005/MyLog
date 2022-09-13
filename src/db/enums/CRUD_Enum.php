@@ -21,5 +21,5 @@ class CRUD_Enum{
         self::DELETE => 'delete',
         self::QUERY => 'query',
         self::OPERATION => 'operation'
-    ]
+    ];
 }

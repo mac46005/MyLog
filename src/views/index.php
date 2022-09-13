@@ -57,6 +57,8 @@
                     -->
                     <label for="category">Category:</label>
                     <input type="text" name="category" id="category">
+                    <label for="subcategory">SubCategory:</label>
+                    <input type="text" name="subcategory" id="subcategory">
                     <label for="description">Description</label>
                     <input type="text" name="description" id="description">
                     <button type="submit">Add</button>

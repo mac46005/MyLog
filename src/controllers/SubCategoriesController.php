@@ -6,10 +6,12 @@ namespace MyLog_ClassLib\Controllers;
 
 use MyLog_ClassLib\App\Container;
 use MyLog_ClassLib\App\View;
+use MyLog_ClassLib\DB\SubCategories_DbAccess;
 
 class SubCategoriesController{
     public function __construct(
-        private Container $container
+        private Container $container,
+        private SubCategories_DbAccess $subCategories_DbAccess
     )
     {
         

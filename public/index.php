@@ -24,30 +24,31 @@ $MyApplication = new Application(
 $MyApplication::$router
     ->get('/', [\MyLog_ClassLib\Controllers\HomeController::class, 'index'])
     ->get('/categories/index',[\MyLog_ClassLib\Controllers\CategoriesController::class, 'index'])
+    ->get('/categories/form',[\MyLog_ClassLib\Controllers\CategoriesController::class,'form'])
+    ->post('/categories/submit-form',[\MyLog_ClassLib\Controllers\CategoriesController::class,'postForm'])
     ->get('/subcategories/index',[\MyLog_ClassLib\Controllers\SubCategoriesController::class,'index']);
 
 $MyApplication::$container
-    
-    ->set(Categorys_DbAccess::class, function(Container $c){
+    ->set(HomeController::class, HomeController::class)
+    ->set(CategoriesController::class, CategoriesController::class)
+    ->set(LogItems_DbAccess::class, function(Container $c){
         return new LogItems_DbAccess(
             $c->get(Container::class),
             CONFIG_PATH . '/dbConn.ini'
         );
     })
-    ->set(IDBAccess::class, function(Container $c){
+    ->set(Categories_DbAccess::class, function(Container $c){
         return new Categories_DbAccess(
             $c->get(Container::class),
-        CONFIG_PATH . '/dbConn.ini'
+            CONFIG_PATH . '/dbConn.ini'
         );
     })
-    ->set(IDBAccess::class, function(Container $c){
+    ->set(SubCategories_DbAccess::class, function(Container $c){
         return new SubCategories_DbAccess(
             $c->get(Container::class),
-            CONFIG_PATH . 'dbConn.ini'
+            CONFIG_PATH . '/dbConn.ini'
         );
-    })
-    ->set(HomeController::class, HomeController::class)
-    ->set(CategoriesController::class, CategoriesController::class);
+    });
 
 
 $MyApplication->run();

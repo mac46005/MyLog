@@ -48,7 +48,7 @@ class MyLog_SqlStatements
     //* Table Creation #########################################
 
     public const CREATE_TABLE_Categories = <<<SQL
-    CREATE TABLE categorys (
+    CREATE TABLE categories (
         id INTEGER,
         name TEXT,
         color TEXT,
@@ -56,6 +56,14 @@ class MyLog_SqlStatements
     )
     SQL;
 
+    public const CREATE_TABLE_SubCategories = <<<SQL
+    CREATE TABLE subcategories (
+        id INTEGER,
+        name TEXT,
+        color TEXT,
+        category_id INTEGER
+    )
+    SQL;
     public const CREATE_TABLE_LogItems = <<<SQL
     CREATE TABLE logItems (
         id INTEGER,
