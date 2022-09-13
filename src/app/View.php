@@ -30,7 +30,6 @@ class View{
         ob_start();
 
         foreach($this->params as $key => $value){
-            echo $$key;
             $$key = $value;
         }
 

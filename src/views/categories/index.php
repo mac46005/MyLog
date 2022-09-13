@@ -41,10 +41,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>data1</th>
-                        <th>data2</th>
-                        <th>data3</th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Color</th>
                     </tr>
                 </thead>
                 <tbody>
