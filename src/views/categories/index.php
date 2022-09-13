@@ -48,16 +48,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>data 1</td>
-                        <td>data 1</td>
-                        <td>data 1</td>
-                    </tr>
-                    <tr>
-                        <td>data 1</td>
-                        <td>data 2</td>
-                        <td>data 3</td>
-                    </tr>
+                    <?php foreach($categoryList as $category){ ?>
+                        <tr>
+                            <td><?= $category['id']?></td>
+                            <td><?= $category['name']?></td>
+                            <td><?= $category['color']?></td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

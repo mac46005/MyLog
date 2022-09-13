@@ -33,7 +33,8 @@ class Categories_DbAccess extends PDO_SqliteAccess{
     {
         try {
             $pdoStmt = $this->db->query(MyLog_SqlStatements::Categories_SELECT_ALL);
-            return $list = $pdoStmt->fetchAll();
+            $list = $pdoStmt->fetchAll();
+            return $list;
         } catch (\PDOException $th) {
             throw $th;
         }

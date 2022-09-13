@@ -19,7 +19,8 @@ class CategoriesController{
     }
 
     public function index(){
-        return View::create_View('categories/index');
+        $categorylist = $this->categories_DbAccess->readAll();
+        return View::create_View('categories/index',['categoryList' => $categorylist]);
     }
 
     public function form(){

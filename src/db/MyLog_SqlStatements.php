@@ -94,7 +94,7 @@ class MyLog_SqlStatements
 
     //* Categories Statements
     public const Categories_SELECT_ALL = <<<SQL
-    SELECT id, name
+    SELECT id, name, color
     FROM categories
     SQL;
     //* Subcategories Statements
