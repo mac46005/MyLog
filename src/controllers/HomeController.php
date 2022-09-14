@@ -23,7 +23,9 @@ class HomeController{
         $categoriesList = $this->logItems_DbAccess->query(MyLog_SqlStatements::Categories_SELECT_ALL);
         $subcategoriesList = $this->logItems_DbAccess->query(MyLog_SqlStatements::SubCategories_SELECT_ALL);
 
-        $logItemsList = $this->logItems_DbAccess->readAll();
+        $logItemsList = $this->logItems_DbAccess->query(
+            "SELECT category_id, subcategory_id, description, timestamp FROM logitems ORDER BY id DESC LIMIT 10"
+        );
 
         return View::create_View('index',['categoriesList' => $categoriesList, 'subcategoriesList' => $subcategoriesList, 'logitemsList' => $logItemsList]);
     }

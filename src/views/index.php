@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components/_table.css">
     <title>Home</title>
 </head>
 <body>
@@ -11,7 +13,13 @@
         <?php
         include_once VIEW_PATH . '/components/_nav.php';
         ?>
-
+        <header>
+            <div class="header-container">
+                <h1>
+                    My Daily Log
+                </h1>
+            </div>
+        </header>
         <main>
             <div class="main-container">
                 <!-- 
@@ -21,7 +29,7 @@
                 -->
                 <!-- *GET -->
                 <table>
-                    <thead>
+                    <thead class="tableHead">
                         <tr>
                             <th>Category</th>
                             <th>SubCategory</th>
@@ -29,13 +37,13 @@
                             <th>TimeStamp</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="tableBody">
                         <?php foreach($logitemsList as $logItem){ ?>
                             <tr>
                                 <?php
                                 foreach($categoriesList as $category){
                                     if($category['id'] == $logItem['category_id']){
-                                        echo "<td>";
+                                        echo '<td style="color:'.$category['color'].';">';
                                         echo $category['name'];
                                         echo "</td>";
                                     }
@@ -44,7 +52,7 @@
                                 <?php
                                 foreach($subcategoriesList as $subcategory){
                                     if($subcategory['id'] == $logItem['subcategory_id']){
-                                        echo "<td>";
+                                        echo '<td style="color:'.$subcategory['color'].';">';
                                         echo $subcategory['name'];
                                         echo "</td>";
                                     }

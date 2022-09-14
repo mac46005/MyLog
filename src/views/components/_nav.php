@@ -1,6 +1,6 @@
 
 <nav>
-<div class="header-container">
+<div class="nav-container">
     <!-- TODO: links to other pages -->
     <h4><a href="/">HOME</a></h4>
     <ul class="nav-menu">

@@ -7,19 +7,39 @@
 }
 
 :root{
-    --color-primary: #0000;
+    --color-primary: rgb(255, 255, 255);
     --color-secondary: #0000;
     --color-danger: red;
     --color-warning: orange;
     --color-success: green;
-    --color-bg1: #000;
+    --color-bg1: rgba(52, 0, 0, 0.516);
     --color-bg2: #111;
-    --color-bg3: #0000;
-    --color-body-background: #0000;
+    --color-bg3: rgba(159, 159, 159, 0);
+    --color-body-background: rgb(0, 0, 0);
 
     --cont-sz-lg: 85%;
     --cont-sz-md: 90%;
     --cont-sz-sm: 93%;
 }
 
+body{
+    background: var(--color-body-background);
+    color: var(--color-primary);
+}
+.body-container{
+    width: 100vw;
+    height: 100vh;
+}
+header{
+    background-color: var(--color-bg1);
+    height: 4em;
+}
+
+.header-container{
+    height: 100%;
+    display: flex;
+    width: var(--cont-sz-lg);
+    justify-content: center;
+    align-items: center;
+}
 
