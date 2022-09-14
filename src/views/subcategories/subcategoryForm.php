@@ -22,11 +22,15 @@
                 <input type="text" name="crud_op" id="crud_op">
                 <label for="name">Name:</label>
                 <input type="text" name="name" id="name">
+                <label for="category_id">Category:</label>
                 <select name="category_id" id="category_id">
-                    <option value="test">test</option>
+                    <?php foreach($categoryList as $category){ ?>
+                        <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                    <?php } ?>
                 </select>
                 <label for="color">Color:</label>
                 <input type="color" name="color" id="color">
+                <input type="submit" value="<?= $crud_op ?> Subcategory">
             </form>
         </div>
     </main>

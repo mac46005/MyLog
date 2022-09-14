@@ -23,9 +23,16 @@ $MyApplication = new Application(
 
 $MyApplication::$router
     ->get('/', [\MyLog_ClassLib\Controllers\HomeController::class, 'index'])
+
+
+
+    // * CATEGORIES
     ->get('/categories/index',[\MyLog_ClassLib\Controllers\CategoriesController::class, 'index'])
     ->get('/categories/form',[\MyLog_ClassLib\Controllers\CategoriesController::class,'form'])
     ->post('/categories/submit-form',[\MyLog_ClassLib\Controllers\CategoriesController::class,'postForm'])
+
+
+    // * SUBCATEGORIES
     ->get('/subcategories/index',[\MyLog_ClassLib\Controllers\SubCategoriesController::class,'index'])
     ->get('/subcategories/form',[\MyLog_ClassLib\Controllers\SubCategoriesController::class, 'form']);
 

@@ -98,4 +98,8 @@ class MyLog_SqlStatements
     FROM categories
     SQL;
     //* Subcategories Statements
+    public const SubCategories_SELECT_ALL = <<<SQL
+    SELECT id, name, category_id, color
+    FROM subcategories
+    SQL;
 }

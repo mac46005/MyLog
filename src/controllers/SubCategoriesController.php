@@ -22,6 +22,9 @@ class SubCategoriesController{
     }
 
     public function form(){
-        return View::create_View('subcategories/subcategoryForm');
+        $categoryList = $this->subCategories_DbAccess->query(
+            "SELECT id,name FROM categories"
+        );
+        return View::create_View('subcategories/subcategoryForm',['categoryList' => $categoryList]);
     }
 }

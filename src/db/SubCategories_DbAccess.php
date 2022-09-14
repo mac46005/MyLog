@@ -17,16 +17,36 @@ class SubCategories_DbAccess extends PDO_SqliteAccess{
 
     public function readOne($id): mixed
     {
-        
+        if($result = $this->db->query(MyLog_SqlStatements::select_WHERE_Id(
+            $this->tableName,
+            ['name','category_id','color'],
+            'id',
+            $id
+        ))){
+            return $result->fetchAll()[0];
+        }
+
+        return false;
     }
 
     public function readAll(): mixed
     {
-        
+        if($result = $this->db->query(MyLog_SqlStatements::SubCategories_SELECT_ALL)){
+            return $result->fetchAll();
+        }
+
+        return false;
     }
 
     public function write($obj): bool
     {
+        if($this->db->exec(MyLog_SqlStatements::insert_Statement(
+            $this->tableName,
+            ['name', 'category_id', 'color'],
+            [$obj->name,$obj->category_id,$obj->color]
+        ))){
+            return true;
+        }
         return false;
     }
 
@@ -41,7 +61,8 @@ class SubCategories_DbAccess extends PDO_SqliteAccess{
 
     public function query($sql): mixed
     {
-        
+        $result = $this->db->query($sql);
+        return $result->fetchAll();
     }
 
 

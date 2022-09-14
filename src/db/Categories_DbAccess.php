@@ -1,108 +1,88 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace MyLog_ClassLib\DB;
+
 use MyLog_ClassLib\App\Container;
 use MyLog_ClassLib\DB\MyLog_SqlStatements;
 
 
-class Categories_DbAccess extends PDO_SqliteAccess{
+class Categories_DbAccess extends PDO_SqliteAccess
+{
 
     private string $tableName = 'categories';
 
     public function __construct(
-        private Container $container, string $configFilePath
-    )
-    {
+        private Container $container,
+        string $configFilePath
+    ) {
         parent::__construct($configFilePath);
         $this->initialSetup();
     }
 
-    public function readOne($id):mixed{
-        try {
-            $pdoStatement = $this->db->query(MyLog_SqlStatements::select_WHERE_Id($this->tableName,['id','name'],'id',$id));
-            $logItem = $pdoStatement->fetchAll(\PDO::FETCH_CLASS,Category::class)[0];
-            return $logItem;
-        } catch (\PDOException $th) {
-            throw $th;
-        }
+    public function readOne($id): mixed
+    {
+        $pdoStatement = $this->db->query(MyLog_SqlStatements::select_WHERE_Id($this->tableName, ['id', 'name'], 'id', $id));
+        $logItem = $pdoStatement->fetchAll(\PDO::FETCH_CLASS, Category::class)[0];
+        return $logItem;
     }
 
     public function readAll(): mixed
     {
-        try {
-            $pdoStmt = $this->db->query(MyLog_SqlStatements::Categories_SELECT_ALL);
-            $list = $pdoStmt->fetchAll();
-            return $list;
-        } catch (\PDOException $th) {
-            throw $th;
-        }
+        $pdoStmt = $this->db->query(MyLog_SqlStatements::Categories_SELECT_ALL);
+        $list = $pdoStmt->fetchAll();
+        return $list;
         return false;
     }
 
     public function write($obj): bool
     {
 
-        try {
-            $sqlStmt = MyLog_SqlStatements::insert_Statement($this->tableName,['name','color'],[$obj->name,$obj->color]);
-            if($this->db->exec($sqlStmt)){
-                return true;
-            }
-        } catch (\PDOException $th) {
-            throw $th;
+        $sqlStmt = MyLog_SqlStatements::insert_Statement($this->tableName, ['name', 'color'], [$obj->name, $obj->color]);
+        if ($this->db->exec($sqlStmt)) {
+            return true;
         }
         return false;
     }
 
     public function delete($id): bool
     {
-        try {
-            $sqlStmt = MyLog_SqlStatements::delete_Statement($this->tableName,'id',$id);
-            if($this->db->exec($sqlStmt)){
-                return true;
-            }
-        } catch (\PDOException $th) {
-            throw $th;
+        $sqlStmt = MyLog_SqlStatements::delete_Statement($this->tableName, 'id', $id);
+        if ($this->db->exec($sqlStmt)) {
+            return true;
         }
+
         return false;
     }
 
     public function update($obj): bool
     {
-        try {
-            //code...
-        } catch (\PDOException $th) {
-            throw $th;
-        }
+
         return false;
     }
 
     public function query($sql): mixed
     {
-        try {
-            if($result = $this->db->query($sql)){
-                return $result;
-            }else{
-
-            }
-        } catch (\PDOException $th) {
-            throw $th;
+        if ($result = $this->db->query($sql)) {
+            return $result;
+        } else {
+           return false; 
         }
-        return false;
     }
 
 
 
 
 
-    public function initialSetup(){
+    public function initialSetup()
+    {
         $this->connect();
         $pdoStatement = $this->db->query(MyLog_SqlStatements::selectTableNameCount_SQLStatement($this->tableName));
 
         $result = $pdoStatement->fetchAll()[0]['nameCount'];
 
-        if($result == 0){
+        if ($result == 0) {
             $this->db->exec(MyLog_SqlStatements::CREATE_TABLE_Categories);
         }
     }
