@@ -68,14 +68,10 @@
         </main>
         <section>
             <div class="inputsection-container">
-                <!-- TODO: Text box for user to input data -->
-                <!-- POST -->
                 <form action="/submit-form" method="POST">
+                    <!-- -SELECTION AREA -->
                     <!-- 
-                        TODO: Make it to where the user can enter a category
-                        TODO: AutoComplete
-                        TODO: If category not found add new category
-                        TODO: when added use logic to mkshort
+                        TODO: user selects category then subcat will populate 
                     -->
                     <label for="category_id">Category:</label>
                     <select name="category_id" id="category_id">
@@ -89,6 +85,7 @@
                             <option value="<?= $subcategory['id'] ?>"><?= $subcategory['name'] ?> </option>
                         <?php } ?>
                     </select>
+                    <!-- !END SELECTION AREA -->
                     <label for="description">Description</label>
                     <input type="text" name="description" id="description">
                     <button type="submit">Add</button>
