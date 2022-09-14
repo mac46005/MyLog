@@ -47,16 +47,14 @@ use MyLog_ClassLib\DB\Enums\CRUD_Enum;
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>data 1</td>
-                        <td>data 1</td>
-                        <td>data 1</td>
-                    </tr>
-                    <tr>
-                        <td>data 1</td>
-                        <td>data 2</td>
-                        <td>data 3</td>
-                    </tr>
+                    <?php foreach($subcategoriesList as $subcategory){ ?>
+                        <tr>
+                            <td><?= $subcategory['id'] ?></td>
+                            <td><?= $subcategory['name'] ?></td>
+                            <td><?= $subcategory['category_id']?></td>
+                            <td><?= $subcategory['color']?></td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

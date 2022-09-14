@@ -35,15 +35,13 @@ class MyLog_SqlStatements
         $groupedCol = implode(",",$col);
         $groupedVal = implode(",",$formattedArray);
 
-        echo $groupedCol;
-        echo $groupedVal;
 
-        
         $stmt = <<<SQL
         INSERT INTO $table ($groupedCol)
         VALUES($groupedVal)
         SQL;
-        echo $stmt;
+
+
         return $stmt;
     }
 
@@ -69,15 +67,17 @@ class MyLog_SqlStatements
         id INTEGER,
         name TEXT,
         color TEXT,
-        category_id INTEGER
+        category_id INTEGER,
+        PRIMARY KEY(id AUTOINCREMENT)
     )
     SQL;
     public const CREATE_TABLE_LogItems = <<<SQL
-    CREATE TABLE logItems (
+    CREATE TABLE logitems (
         id INTEGER,
         description,
         timestamp TEXT,
         category_id INTEGER,
+        subcategory_id INTEGER,
         PRIMARY KEY(id AUTOINCREMENT)
     )
     SQL;
@@ -87,7 +87,8 @@ class MyLog_SqlStatements
     //* LogItem Statements
 
     public const LogItem_ReadAll = <<<SQL
-
+    SELECT id, description, timestamp, category_id, subcategory_id
+    FROM logitems
     SQL;
 
 

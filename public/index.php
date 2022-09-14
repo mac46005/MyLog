@@ -6,8 +6,6 @@ use MyLog_ClassLib\Controllers\HomeController;
 use MyLog_ClassLib\DB\Categories_DbAccess;
 use MyLog_ClassLib\DB\LogItems_DbAccess;
 use MyLog_ClassLib\DB\SubCategories_DbAccess;
-use MyLog_ClassLib\DB\Interfaces\IDBAccess;
-use MyLog_ClassLib\Models\DB_Models\Categorys_DbAccess;
 
 require '../vendor/autoload.php';
 
@@ -23,7 +21,7 @@ $MyApplication = new Application(
 
 $MyApplication::$router
     ->get('/', [\MyLog_ClassLib\Controllers\HomeController::class, 'index'])
-
+    ->post('/submit-form', [\MyLog_ClassLib\Controllers\HomeController::class,'submitForm'])
 
 
     // * CATEGORIES
@@ -34,7 +32,8 @@ $MyApplication::$router
 
     // * SUBCATEGORIES
     ->get('/subcategories/index',[\MyLog_ClassLib\Controllers\SubCategoriesController::class,'index'])
-    ->get('/subcategories/form',[\MyLog_ClassLib\Controllers\SubCategoriesController::class, 'form']);
+    ->get('/subcategories/form',[\MyLog_ClassLib\Controllers\SubCategoriesController::class, 'form'])
+    ->post('/subcategories/submit-form',[\MyLog_ClassLib\Controllers\SubCategoriesController::class,'submitForm']);
 
 $MyApplication::$container
     ->set(HomeController::class, HomeController::class)

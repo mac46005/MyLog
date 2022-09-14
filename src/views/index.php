@@ -23,23 +23,37 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>id</th>
-                            <th>data1</th>
-                            <th>data2</th>
-                            <th>data3</th>
+                            <th>Category</th>
+                            <th>SubCategory</th>
+                            <th>Description</th>
+                            <th>TimeStamp</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>data 1</td>
-                            <td>data 1</td>
-                            <td>data 1</td>
-                        </tr>
-                        <tr>
-                            <td>data 1</td>
-                            <td>data 2</td>
-                            <td>data 3</td>
-                        </tr>
+                        <?php foreach($logitemsList as $logItem){ ?>
+                            <tr>
+                                <?php
+                                foreach($categoriesList as $category){
+                                    if($category['id'] == $logItem['category_id']){
+                                        echo "<td>";
+                                        echo $category['name'];
+                                        echo "</td>";
+                                    }
+                                }
+                                ?>
+                                <?php
+                                foreach($subcategoriesList as $subcategory){
+                                    if($subcategory['id'] == $logItem['subcategory_id']){
+                                        echo "<td>";
+                                        echo $subcategory['name'];
+                                        echo "</td>";
+                                    }
+                                }
+                                ?>
+                                <td><?= $logItem['description'] ?></td>
+                                <td><?= $logItem['timestamp'] ?></td>
+                            </tr>
+                        <?php }?>
                     </tbody>
                 </table>
             </div>
@@ -48,17 +62,25 @@
             <div class="inputsection-container">
                 <!-- TODO: Text box for user to input data -->
                 <!-- POST -->
-                <form action="">
+                <form action="/submit-form" method="POST">
                     <!-- 
                         TODO: Make it to where the user can enter a category
                         TODO: AutoComplete
                         TODO: If category not found add new category
                         TODO: when added use logic to mkshort
                     -->
-                    <label for="category">Category:</label>
-                    <input type="text" name="category" id="category">
-                    <label for="subcategory">SubCategory:</label>
-                    <input type="text" name="subcategory" id="subcategory">
+                    <label for="category_id">Category:</label>
+                    <select name="category_id" id="category_id">
+                        <?php foreach($categoriesList as $category){ ?>
+                            <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                        <?php } ?>
+                    </select>
+                    <label for="subcategory_id">SubCategory:</label>
+                    <select name="subcategory_id" id="subcategory_id">
+                        <?php foreach($subcategoriesList as $subcategory){ ?>
+                            <option value="<?= $subcategory['id'] ?>"><?= $subcategory['name'] ?> </option>
+                        <?php } ?>
+                    </select>
                     <label for="description">Description</label>
                     <input type="text" name="description" id="description">
                     <button type="submit">Add</button>

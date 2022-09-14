@@ -17,9 +17,9 @@
     </header>
     <main>
         <div class="main-container">
-            <form action="">
+            <form action="/subcategories/submit-form" method="POST">
                 <input type="number" name="id" id="id">
-                <input type="text" name="crud_op" id="crud_op">
+                <input type="text" name="crud_op" id="crud_op" value="<?= $crud_op ?>">
                 <label for="name">Name:</label>
                 <input type="text" name="name" id="name">
                 <label for="category_id">Category:</label>

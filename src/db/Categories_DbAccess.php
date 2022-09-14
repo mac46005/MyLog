@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace MyLog_ClassLib\DB;
 
 use MyLog_ClassLib\App\Container;
+use MyLog_ClassLib\DB\Enums\TABLES_Enum;
 use MyLog_ClassLib\DB\MyLog_SqlStatements;
 
 
@@ -67,7 +68,7 @@ class Categories_DbAccess extends PDO_SqliteAccess
         if ($result = $this->db->query($sql)) {
             return $result;
         } else {
-           return false; 
+            return false;
         }
     }
 
@@ -75,15 +76,33 @@ class Categories_DbAccess extends PDO_SqliteAccess
 
 
 
-    public function initialSetup()
+    public function initialSetup(): self
     {
         $this->connect();
-        $pdoStatement = $this->db->query(MyLog_SqlStatements::selectTableNameCount_SQLStatement($this->tableName));
 
+
+        $pdoStatement = $this->db->query(MyLog_SqlStatements::selectTableNameCount_SQLStatement(TABLES_Enum::LOGITEMS));
         $result = $pdoStatement->fetchAll()[0]['nameCount'];
+        if ($result == 0) {
+            $this->db->exec(MyLog_SqlStatements::CREATE_TABLE_LogItems);
+        }
 
+
+        $pdoStatement = $this->db->query(MyLog_SqlStatements::selectTableNameCount_SQLStatement(TABLES_Enum::CATEGORIES));
+        $result = $pdoStatement->fetchAll()[0]['nameCount'];
         if ($result == 0) {
             $this->db->exec(MyLog_SqlStatements::CREATE_TABLE_Categories);
         }
+
+        $pdoStatement = $this->db->query(MyLog_SqlStatements::selectTableNameCount_SQLStatement(TABLES_Enum::SUBCATEGORIES));
+        $result = $pdoStatement->fetchAll()[0]['nameCount'];
+        if ($result == 0) {
+            $this->db->exec(MyLog_SqlStatements::CREATE_TABLE_SubCategories);
+        }
+
+
+
+
+        return $this;
     }
 }
